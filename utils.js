@@ -7,27 +7,31 @@ function renderPage (content, format = 'PNG', width = 500, height = 500, quality
   let page
 
   return new Promise((resolve, reject) => {
-    phInstance.createPage().then(p => {
-      page = p
-      page.on('onLoadFinished', success => {
-        page.renderBase64(format, quality).then(image => {
-          page.close()
-          let imageBuffer = new Buffer(image, 'base64')
-          resolve(imageBuffer)
-        }).catch(err => reject(err))
+    phInstance.createPage()
+      .then(p => {
+        page = p
+        return page.property('viewportSize', { width, height })
       })
-      page.property('viewportSize', {
-        width,
-        height
-      }).then(() => {
+      .then(() => {
+        page.on('onLoadFinished', success => {
+          page.renderBase64(format, quality)
+            .then(image => {
+              page.close()
+              let imageBuffer = new Buffer(image, 'base64')
+              resolve(imageBuffer)
+            })
+            .catch(err => reject(err))
+        })
+
         page.setContent(content, 'localhost')
       })
-    }).catch(err => reject(err))
+      .catch(err => reject(err))
   })
 }
 
-process.on('SIGINT', () => phInstance.kill())
+process.on('SIGINT', () => {
+  phInstance.kill()
+  process.exit(0)
+})
 
-module.exports = {
-  renderPage
-}
+module.exports = { renderPage }
