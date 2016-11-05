@@ -35,16 +35,21 @@ http://localhost:3000/{width}x{height}.{format}?text={text}
 
 ### Examples
 
-```
-http://localhost:3000/300
-http://localhost:3000/300x600
-http://localhost:3000/900x1200.png
-http://localhost:3000/900x1200.jpg
-http://localhost:3000/900x1200.jpeg
-http://localhost:3000/500.jpg
-http://localhost:3000/500.jpg?text=Hello World
-http://localhost:3000/500x700.jpg?text=Hello World
-```
+* http://localhost:3000/300
+* http://localhost:3000/300x600
+* http://localhost:3000/900x1200.png
+* http://localhost:3000/900x1200.jpg
+* http://localhost:3000/900x1200.jpeg
+* http://localhost:3000/500.jpg
+* http://localhost:3000/500.jpg?text=Hello%20World
+* http://localhost:3000/500x700.jpg?text=Hello%20World
+
+
+#### Example Image
+
+> http://localhost:3000/600x400
+
+![They Live Placeholder Example](https://raw.githubusercontent.com/fabsrc/they-live-placeholder/example/600x400.png)
 
 
 ## License
