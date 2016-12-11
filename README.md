@@ -4,6 +4,9 @@
 
 Generates placeholder images in the style of billboards from John Carpenter's movie [*They Live*](https://www.youtube.com/watch?v=JI8AMRbqY6w).
 
+## Requirements
+
+* [GD](https://libgd.github.io/) with FreeType, JPEG and PNG libraries
 
 ## Install
 
