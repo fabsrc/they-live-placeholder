@@ -10,8 +10,9 @@ $width = !empty($match[1]) ? $match[1] : 500;
 $height = !empty($match[3]) ? $match[3] : $width;
 $width = min($width, 3000);
 $height = min($height, 3000);
-
 $format = isset($match[5]) ? $match[5] : 'png';
+$font_size = min([$height / 8.5,$width / 8.5]);
+
 
 $slogans = [
 'Obey',
@@ -46,11 +47,13 @@ if (isset($_SERVER['QUERY_STRING'])) {
     $text = strtoupper($random_slogan);
 }
 
-$font_size = min([$height / 8.5,$width / 8.5]);
-
 $im = imagecreatetruecolor($width, $height);
+
 $backgroundColor = imagecolorallocate($im, 255, 255, 255);
 imagefill($im, 0, 0, $backgroundColor);
+
+$borderColor = imagecolorallocate($im, 225, 225, 225);
+imagerectangle($im, 0, 0, $width-1, $height-1, $borderColor);
 
 $box = new Box($im);
 $box->setFontFace(__DIR__.'/fonts/font.otf');
